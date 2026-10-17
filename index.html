@@ -1,3 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ЛАДЬЯ — салон красоты в центре Москвы</title>
+  <meta name="description" content="Салон красоты «ЛАДЬЯ» на Большой Никитской: парикмахерский зал, ногтевой сервис, косметология и оформление бровей. Премиум-косметика, запись онлайн.">
+  <style>
+    /* Сброс стандартных отступов браузера (body margin 8px и т.п.) */
+    html, body { margin: 0; padding: 0; }
+    body { -webkit-text-size-adjust: 100%; }
+
+    /* Шрифтовые переменные Tilda с локальными фолбэками */
+    :root {
+      --t-text-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --t-headline-font: Georgia, "Times New Roman", serif;
+    }
+
+    /* Базовые стили t-btnflex (Tilda), отсутствовавшие в сохранённом HTML */
+    .t-btnflex { display: inline-flex; align-items: center; justify-content: center; gap: 8px; box-sizing: border-box; padding: 12px 36px; font-family: var(--t-text-font); font-size: 15px; line-height: 1.2; letter-spacing: .02em; text-decoration: none; cursor: pointer; border: 1px solid transparent; border-radius: 10px; background-color: #222; color: #fff; transition: background-color .3s ease, color .3s ease, border-color .3s ease, opacity .3s ease, transform .3s cubic-bezier(.22, 1, .36, 1); }
+    .t-btnflex_sm { padding: 10px 22px; font-size: 14px; }
+    .t-btnflex_md { padding: 14px 34px; font-size: 15px; }
+    .t-btnflex_lg { padding: 16px 40px; font-size: 16px; }
+    a.t-btnflex { text-decoration: none; }
+    .t-btnflex:hover { opacity: .92; }
+    .t-submit { border: none; appearance: none; -webkit-appearance: none; }
+    .t-btnflex__text { display: block; }
+  </style>
+</head>
+<body>
+
 <header class="vb-n4k" data-section-name="Шапка сайта" data-vibeblock-unique-section="yes" id="site-header">
     <style>
       .vb-n4k, .vb-n4k * { box-sizing: border-box; }
@@ -363,7 +394,7 @@
         padding: clamp(120px, 18vh, 180px) clamp(20px, 4vw, 40px) clamp(40px, 7vh, 72px);
       }
       .vb-h7s__eyebrow {
-        font-size: 12.5px;
+        font-size: 13px;
         letter-spacing: 0.22em;
         text-transform: uppercase;
         color: rgba(255, 255, 255, 0.86);
@@ -372,7 +403,7 @@
       .vb-h7s__title {
         font-family: var(--t-headline-font);
         font-weight: 400;
-        font-size: clamp(2.3rem, 6.4vw, 5.4rem);
+        font-size: clamp(2.65rem, 6.4vw, 5.4rem);
         line-height: 1.06;
         letter-spacing: -0.02em;
         margin: 0 0 22px;
@@ -384,7 +415,7 @@
         color: #E8BFA8;
       }
       .vb-h7s__sub {
-        font-size: clamp(15px, 1.6vw, 18px);
+        font-size: clamp(16.5px, 1.6vw, 18px);
         line-height: 1.6;
         color: rgba(255, 255, 255, 0.9);
         max-width: 46ch;
@@ -473,6 +504,26 @@
       @media (min-width: 960px) {
         .vb-h7s { align-items: center; }
         .vb-h7s__inner { padding-top: 96px; }
+      }
+      @media (max-width: 640px) {
+        .vb-h7s__inner {
+          padding: 104px clamp(20px, 4vw, 40px) 44px;
+        }
+        .vb-h7s__eyebrow { margin-bottom: 14px; }
+        .vb-h7s__title { margin-bottom: 18px; }
+        .vb-h7s__sub { margin-bottom: 26px; }
+        .vb-h7s__actions {
+          flex-direction: column;
+          align-items: stretch;
+          margin-bottom: 30px;
+        }
+        .vb-h7s__btn-solid,
+        .vb-h7s__btn-ghost {
+          padding: 17px 30px;
+          font-size: 16px;
+          text-align: center;
+        }
+        .vb-h7s__meta { padding-top: 18px; }
       }
     </style>
   
@@ -2300,3 +2351,6 @@
       })();
     </script>
   </section>
+
+</body>
+</html>
