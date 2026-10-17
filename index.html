@@ -1,0 +1,2302 @@
+<header class="vb-n4k" data-section-name="Шапка сайта" data-vibeblock-unique-section="yes" id="site-header">
+    <style>
+      .vb-n4k, .vb-n4k * { box-sizing: border-box; }
+      .vb-n4k input, .vb-n4k textarea, .vb-n4k select { font: inherit; }
+  
+      .vb-n4k {
+        --n4k-ink: #2B2724;
+        --n4k-bg: #F1E7DA;
+        --n4k-accent: #B0563B;
+        --n4k-line: rgba(43, 39, 36, 0.14);
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 60;
+        font-family: var(--t-text-font);
+        transition: background-color 0.4s ease, box-shadow 0.4s ease;
+      }
+      .vb-n4k--solid {
+        background-color: rgba(241, 231, 218, 0.96);
+        box-shadow: 0 1px 0 var(--n4k-line);
+      }
+  
+      .vb-n4k__bar {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 18px clamp(16px, 4vw, 40px);
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+  
+      .vb-n4k__logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        color: #fff;
+        margin-right: auto;
+      }
+      .vb-n4k--solid .vb-n4k__logo { color: var(--n4k-ink); }
+      .vb-n4k__logo-mark {
+        width: 40px; height: 40px;
+        border: 1px solid currentColor;
+        border-radius: 2px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--t-headline-font);
+        font-size: 20px;
+        line-height: 1;
+        transition: border-color 0.3s ease;
+      }
+      .vb-n4k__logo-word {
+        font-family: var(--t-headline-font);
+        font-size: 19px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        line-height: 1;
+      }
+      .vb-n4k__logo-sub {
+        display: block;
+        font-family: var(--t-text-font);
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        opacity: 0.75;
+        margin-top: 4px;
+      }
+  
+      .vb-n4k__nav { display: none; }
+      .vb-n4k__nav ul {
+        list-style: none;
+        margin: 0; padding: 0;
+        display: flex;
+        gap: clamp(18px, 2.4vw, 34px);
+      }
+      .vb-n4k__nav a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 14.5px;
+        letter-spacing: 0.02em;
+        padding: 6px 0;
+        position: relative;
+      }
+      .vb-n4k--solid .vb-n4k__nav a { color: var(--n4k-ink); }
+      .vb-n4k__nav a::after {
+        content: "";
+        position: absolute;
+        left: 0; right: 0; bottom: 0;
+        height: 1px;
+        background: currentColor;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+      .vb-n4k__nav a:hover::after, .vb-n4k__nav a:focus-visible::after { transform: scaleX(1); }
+  
+      .vb-n4k__phone {
+        display: none;
+        color: #fff;
+        text-decoration: none;
+        font-size: 14.5px;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+      }
+      .vb-n4k--solid .vb-n4k__phone { color: var(--n4k-ink); }
+      .vb-n4k__phone:hover { color: #fff; opacity: 0.85; }
+      .vb-n4k--solid .vb-n4k__phone:hover { color: var(--n4k-accent); opacity: 1; }
+  
+      .vb-n4k .vb-n4k__cta { display: none; }
+  
+      .vb-n4k__burger {
+        width: 44px; height: 44px;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        background: none;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 2px;
+        cursor: pointer;
+        padding: 0;
+        color: #fff;
+      }
+      .vb-n4k--solid .vb-n4k__burger,
+      .vb-n4k--open .vb-n4k__burger {
+        border-color: var(--n4k-line);
+        color: var(--n4k-ink);
+      }
+      .vb-n4k__burger span {
+        display: block;
+        width: 20px; height: 1.5px;
+        background: currentColor;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+      .vb-n4k--open .vb-n4k__burger span:nth-child(1) { transform: translateY(3.75px) rotate(45deg); }
+      .vb-n4k--open .vb-n4k__burger span:nth-child(2) { opacity: 0; }
+      .vb-n4k--open .vb-n4k__burger span:nth-child(3) { transform: translateY(-3.75px) rotate(-45deg); }
+  
+      .vb-n4k :focus-visible {
+        outline: 2px solid var(--n4k-accent);
+        outline-offset: 3px;
+        border-radius: 2px;
+      }
+  
+      .vb-n4k__menu {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: var(--n4k-bg);
+        z-index: -1;
+        padding: 96px clamp(20px, 6vw, 40px) 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s;
+        overflow-y: auto;
+      }
+      .vb-n4k--open .vb-n4k__menu {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+      }
+      .vb-n4k__menu ul { list-style: none; margin: 0; padding: 0; }
+      .vb-n4k__menu li { border-bottom: 1px solid var(--n4k-line); }
+      .vb-n4k__menu a.vb-n4k__menu-link {
+        display: block;
+        padding: 18px 0;
+        color: var(--n4k-ink);
+        text-decoration: none;
+        font-family: var(--t-headline-font);
+        font-size: clamp(22px, 6vw, 30px);
+        line-height: 1.2;
+      }
+      .vb-n4k__menu a.vb-n4k__menu-link:hover { color: var(--n4k-accent); }
+      .vb-n4k__menu-foot {
+        margin-top: auto;
+        padding-top: 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        align-items: flex-start;
+      }
+      .vb-n4k__menu-phone {
+        color: var(--n4k-ink);
+        text-decoration: none;
+        font-family: var(--t-headline-font);
+        font-size: 20px;
+      }
+      .vb-n4k__menu-hours {
+        color: #5c5249;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+  
+      .vb-n4k .vb-n4k__btn {
+        background: var(--n4k-accent);
+        color: #fff;
+        border-radius: 2px;
+        text-decoration: none;
+        padding: 12px 24px;
+        font-size: 14.5px;
+        letter-spacing: 0.03em;
+        transition: background-color 0.3s ease;
+        display: inline-block;
+      }
+      .t-form { background-color: #F3EDE1 !important; }
+      .vb-n4k .vb-n4k__btn:hover { background: #93432C; }
+  
+      @media (min-width: 640px) {
+        .vb-n4k__phone { display: inline-block; }
+      }
+      @media (min-width: 960px) {
+        .vb-n4k__nav { display: block; }
+        .vb-n4k__burger { display: none; }
+        .vb-n4k .vb-n4k__cta { display: inline-block; }
+        .vb-n4k__menu { display: none; }
+        .vb-n4k__bar { gap: 32px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .vb-n4k, .vb-n4k__menu, .vb-n4k__burger span, .vb-n4k__nav a::after { transition: none; }
+      }
+    </style>
+  
+    <div class="vb-n4k__bar">
+      <a class="vb-n4k__logo" href="#hero" aria-label="ЛАДЬЯ — салон красоты, на главную">
+        <span class="vb-n4k__logo-mark" aria-hidden="true">Л</span>
+        <span>
+          <span class="vb-n4k__logo-word">Ладья</span>
+          <span class="vb-n4k__logo-sub">салон красоты</span>
+        </span>
+      </a>
+  
+      <nav class="vb-n4k__nav" aria-label="Основная навигация">
+        <ul>
+          <li><a href="#about">О салоне</a></li>
+          <li><a href="#services">Услуги</a></li>
+          <li><a href="#masters">Мастера</a></li>
+          <li><a href="#reviews">Отзывы</a></li>
+          <li><a href="#contacts">Контакты</a></li>
+        </ul>
+      </nav>
+  
+      
+      <a class="vb-n4k__btn vb-n4k__cta t-btnflex t-btnflex_sm" href="#booking" style="border-radius: 5px !important;"><span class="t-btnflex__text">Записаться</span></a>
+  
+      <button class="vb-n4k__burger" type="button" aria-expanded="false" aria-controls="vb-n4k-menu" aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  
+    <div class="vb-n4k__menu" id="vb-n4k-menu">
+      <nav aria-label="Мобильная навигация">
+        <ul>
+          <li><a class="vb-n4k__menu-link" href="#about">О салоне</a></li>
+          <li><a class="vb-n4k__menu-link" href="#services">Услуги и цены</a></li>
+          <li><a class="vb-n4k__menu-link" href="#masters">Мастера</a></li>
+          <li><a class="vb-n4k__menu-link" href="#reviews">Отзывы</a></li>
+          <li><a class="vb-n4k__menu-link" href="#booking">Запись онлайн</a></li>
+          <li><a class="vb-n4k__menu-link" href="#contacts">Контакты</a></li>
+        </ul>
+      </nav>
+      <div class="vb-n4k__menu-foot">
+        <a class="vb-n4k__menu-phone" href="tel:+74951204567">+7 (495) 120-45-67</a>
+        <span class="vb-n4k__menu-hours">Ежедневно 10:00–21:00<br>Москва, Большая Никитская, 24</span>
+        <a class="vb-n4k__btn t-btnflex t-btnflex_md" href="#booking"><span class="t-btnflex__text">Записаться онлайн</span></a>
+      </div>
+    </div>
+  
+    <script>
+      (function () {
+        var root = document.getElementById('site-header');
+        if (!root) return;
+        var burger = root.querySelector('.vb-n4k__burger');
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+        function setOpen(open) {
+          root.classList.toggle('vb-n4k--open', open);
+          burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+          burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+          document.body.style.overflow = open ? 'hidden' : '';
+        }
+  
+        burger.addEventListener('click', function () {
+          setOpen(!root.classList.contains('vb-n4k--open'));
+        });
+  
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && root.classList.contains('vb-n4k--open')) {
+            setOpen(false);
+            burger.focus();
+          }
+        });
+  
+        function onScroll() {
+          root.classList.toggle('vb-n4k--solid', window.scrollY > 48);
+        }
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+  
+        var anchors = root.querySelectorAll('a[href^="#"]');
+        Array.prototype.forEach.call(anchors, function (a) {
+          a.addEventListener('click', function (e) {
+            var id = a.getAttribute('href');
+            if (!id || id === '#') return;
+            var target = document.querySelector(id);
+            if (!target) return;
+            e.preventDefault();
+            setOpen(false);
+            target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+            history.replaceState(null, '', id);
+          });
+        });
+      })();
+    </script>
+  </header>
+  
+  <!-- Обложка -->
+  <section class="vb-h7s" id="hero" data-section-name="Обложка" aria-labelledby="vb-h7s-title" data-vibeblock-unique-section="yes">
+    <style>
+      .vb-h7s, .vb-h7s * { box-sizing: border-box; }
+      .vb-h7s input, .vb-h7s textarea, .vb-h7s select { font: inherit; }
+  
+      .vb-h7s {
+        --h7s-ink: #2B2724;
+        --h7s-accent: #B0563B;
+        --h7s-accent-dark: #93432C;
+        position: relative;
+        min-height: 100vh;
+        min-height: 100svh;
+        display: flex;
+        align-items: flex-end;
+        font-family: var(--t-text-font);
+        color: #fff;
+        background: #241d18;
+        scroll-margin-top: 0;
+        overflow: hidden;
+      }
+      .vb-h7s__media {
+        position: absolute;
+        inset: 0;
+      }
+      .vb-h7s__media img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        object-position: center 40%;
+        display: block;
+      }
+      .vb-h7s__media::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(28, 22, 18, 0.58) 0%, rgba(28, 22, 18, 0.34) 42%, rgba(28, 22, 18, 0.72) 100%);
+      }
+      .vb-h7s__inner {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: clamp(120px, 18vh, 180px) clamp(20px, 4vw, 40px) clamp(40px, 7vh, 72px);
+      }
+      .vb-h7s__eyebrow {
+        font-size: 12.5px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.86);
+        margin: 0 0 18px;
+      }
+      .vb-h7s__title {
+        font-family: var(--t-headline-font);
+        font-weight: 400;
+        font-size: clamp(2.3rem, 6.4vw, 5.4rem);
+        line-height: 1.06;
+        letter-spacing: -0.02em;
+        margin: 0 0 22px;
+        max-width: 17ch;
+        text-wrap: balance;
+      }
+      .vb-h7s__title em {
+        font-style: italic;
+        color: #E8BFA8;
+      }
+      .vb-h7s__sub {
+        font-size: clamp(15px, 1.6vw, 18px);
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.9);
+        max-width: 46ch;
+        margin: 0 0 34px;
+        text-wrap: pretty;
+      }
+      .vb-h7s__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-bottom: clamp(36px, 6vh, 64px);
+      }
+      .vb-h7s__btn-solid,
+      .vb-h7s__btn-ghost {
+        border-radius: 2px;
+        padding: 15px 30px;
+        font-size: 15px;
+        letter-spacing: 0.03em;
+        text-decoration: none;
+        display: inline-block;
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+      }
+      .vb-h7s__btn-solid {
+        background: var(--h7s-accent);
+        color: #fff;
+      }
+      .vb-h7s__btn-solid:hover { background: var(--h7s-accent-dark); }
+      .vb-h7s__btn-ghost {
+        border: 1px solid rgba(255, 255, 255, 0.65);
+        color: #fff;
+        background: transparent;
+      }
+      .vb-h7s__btn-ghost:hover {
+        background: #fff;
+        color: var(--h7s-ink);
+        border-color: #fff;
+      }
+      .vb-h7s__meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 28px;
+        padding-top: 22px;
+        border-top: 1px solid rgba(255, 255, 255, 0.25);
+        font-size: 13.5px;
+        letter-spacing: 0.04em;
+        color: rgba(255, 255, 255, 0.85);
+        margin: 0;
+        list-style: none;
+      }
+      .vb-h7s__meta li { display: flex; align-items: center; gap: 8px; }
+      .vb-h7s__meta a { color: inherit; text-decoration: none; }
+      .vb-h7s__meta a:hover { color: #E8BFA8; }
+      .vb-h7s__dot {
+        width: 4px; height: 4px;
+        border-radius: 50%;
+        background: #E8BFA8;
+        flex: none;
+      }
+  
+      .vb-h7s :focus-visible {
+        outline: 2px solid #E8BFA8;
+        outline-offset: 3px;
+        border-radius: 2px;
+      }
+  
+      .vb-h7s__btn-solid:focus-visible,
+      .vb-h7s__btn-ghost:focus-visible {
+        outline: 2px solid #E8BFA8;
+        outline-offset: 3px;
+      }
+  
+      .vb-h7s__fade {
+        animation: vb-h7s-rise 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+      }
+      .vb-h7s__fade--2 { animation-delay: 0.12s; }
+      .vb-h7s__fade--3 { animation-delay: 0.24s; }
+      .vb-h7s__fade--4 { animation-delay: 0.36s; }
+      @keyframes vb-h7s-rise {
+        from { opacity: 0; transform: translateY(22px); }
+        to { opacity: 1; transform: none; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .vb-h7s__fade { animation: none; }
+        .vb-h7s__btn-solid, .vb-h7s__btn-ghost { transition: none; }
+      }
+      @media (min-width: 960px) {
+        .vb-h7s { align-items: center; }
+        .vb-h7s__inner { padding-top: 96px; }
+      }
+    </style>
+  
+    <div class="vb-h7s__media">
+      <img src="https://static.tildacdn.pub/tild6333-6239-4639-b063-353339616630/photo-1633681121751-.jpg" alt="Интерьер салона красоты ЛАДЬЯ: мягкий свет, кресла и зеркала в тёплых тонах" fetchpriority="high">
+    </div>
+  
+    <div class="vb-h7s__inner">
+      <p class="vb-h7s__eyebrow vb-h7s__fade">Салон красоты · Москва</p>
+      <h1 class="vb-h7s__title vb-h7s__fade vb-h7s__fade--2" id="vb-h7s-title">Красота <em>в деталях</em> — салон красоты в центре города</h1>
+      <p class="vb-h7s__sub vb-h7s__fade vb-h7s__fade--3">Парикмахерский зал, ногтевой сервис, косметология и оформление бровей. Небольшая команда мастеров с опытом от 6 лет, премиум-косметика и стерильность по медстандартам.</p>
+  
+      <div class="vb-h7s__actions vb-h7s__fade vb-h7s__fade--3">
+        <a class="vb-h7s__btn-solid t-btnflex t-btnflex_md" href="#booking"><span class="t-btnflex__text">Записаться онлайн</span></a>
+        <a class="vb-h7s__btn-ghost t-btnflex t-btnflex_md" href="#services"><span class="t-btnflex__text">Услуги и цены</span></a>
+      </div>
+  
+      <ul class="vb-h7s__meta vb-h7s__fade vb-h7s__fade--4">
+        <li><span class="vb-h7s__dot" aria-hidden="true"></span>Ежедневно 10:00–21:00</li>
+        
+        
+      </ul>
+    </div>
+  
+    <script>
+      (function () {
+        var root = document.getElementById('hero');
+        if (!root) return;
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var links = root.querySelectorAll('a[href^="#"]');
+        Array.prototype.forEach.call(links, function (a) {
+          a.addEventListener('click', function (e) {
+            var id = a.getAttribute('href');
+            if (!id || id === '#') return;
+            var target = document.querySelector(id);
+            if (!target) return;
+            e.preventDefault();
+            target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+            if (history.replaceState) history.replaceState(null, '', id);
+          });
+        });
+      })();
+    </script>
+  </section>
+  
+  <!-- О салоне -->
+  <section class="vb-a2m" id="about" data-section-name="О салоне" aria-labelledby="vb-a2m-title" data-vibeblock-unique-section="yes">
+    <style>
+      .vb-a2m, .vb-a2m * { box-sizing: border-box; }
+      .vb-a2m input, .vb-a2m textarea, .vb-a2m select { font: inherit; }
+  
+      .vb-a2m {
+        --a2m-ink: #2B2724;
+        --a2m-muted: #6E6259;
+        --a2m-bg: #F1E7DA;
+        --a2m-accent: #B0563B;
+        --a2m-line: rgba(43, 39, 36, 0.16);
+        background: var(--a2m-bg);
+        color: var(--a2m-ink);
+        font-family: var(--t-text-font);
+        padding: clamp(72px, 11vw, 132px) 0;
+        scroll-margin-top: 70px;
+      }
+      .vb-a2m__inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 clamp(20px, 4vw, 40px);
+        display: grid;
+        gap: clamp(36px, 6vw, 72px);
+      }
+      .vb-a2m__title {
+        font-family: var(--t-headline-font);
+        font-weight: 400;
+        font-size: clamp(1.9rem, 3.6vw, 3rem);
+        line-height: 1.12;
+        letter-spacing: -0.015em;
+        margin: 0 0 20px;
+        text-wrap: balance;
+      }
+      .vb-a2m__lead {
+        font-size: clamp(15.5px, 1.5vw, 17.5px);
+        line-height: 1.7;
+        color: var(--a2m-muted);
+        margin: 0 0 16px;
+        max-width: 62ch;
+        text-wrap: pretty;
+      }
+      .vb-a2m__lead strong { color: var(--a2m-ink); font-weight: 600; }
+      .vb-a2m__quote {
+        margin: 26px 0 0;
+        padding: 18px 0 0;
+        border-top: 1px solid var(--a2m-line);
+        font-family: var(--t-headline-font);
+        font-style: italic;
+        font-size: clamp(17px, 2vw, 21px);
+        line-height: 1.5;
+        color: var(--a2m-ink);
+        max-width: 44ch;
+      }
+      .vb-a2m__quote cite {
+        display: block;
+        margin-top: 10px;
+        font-family: var(--t-text-font);
+        font-style: normal;
+        font-size: 13px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--a2m-muted);
+      }
+  
+      .vb-a2m__gallery {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        align-items: end;
+      }
+      .vb-a2m__pic {
+        overflow: hidden;
+        border-radius: 2px;
+        margin: 0;
+      }
+      .vb-a2m__pic img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+      .vb-a2m__pic--tall { aspect-ratio: 3 / 4; }
+      .vb-a2m__pic--short { aspect-ratio: 3 / 4; margin-bottom: clamp(18px, 4vw, 44px); }
+      .vb-a2m__pic:hover img { transform: scale(1.04); }
+      .vb-a2m__gallery-note {
+        grid-column: 1 / -1;
+        font-size: 13px;
+        color: var(--a2m-muted);
+        letter-spacing: 0.02em;
+        margin: 4px 0 0;
+      }
+  
+      .vb-a2m__facts {
+        list-style: none;
+        margin: clamp(40px, 6vw, 64px) 0 0;
+        padding: 0;
+        display: grid;
+        gap: 0;
+      }
+      .vb-a2m__fact {
+        border-top: 1px solid var(--a2m-line);
+        padding: 24px 0;
+        display: grid;
+        gap: 8px;
+      }
+      .vb-a2m__fact h3 {
+        font-family: var(--t-headline-font);
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 1.25;
+        margin: 0;
+      }
+      .vb-a2m__fact p {
+        margin: 0;
+        font-size: 15px;
+        line-height: 1.65;
+        color: var(--a2m-muted);
+        max-width: 58ch;
+        text-wrap: pretty;
+      }
+      .vb-a2m__fact-tag {
+        display: inline-block;
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--a2m-accent);
+      }
+  
+      .vb-a2m-js-reveal [data-reveal] {
+        opacity: 0;
+        transform: translateY(26px);
+        transition: opacity 0.75s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.75s cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+      .vb-a2m-js-reveal [data-reveal].is-in { opacity: 1; transform: none; }
+  
+      @media (min-width: 640px) {
+        .vb-a2m__fact { grid-template-columns: 200px 1fr; gap: 24px; align-items: baseline; }
+      }
+      @media (min-width: 960px) {
+        .vb-a2m__inner { grid-template-columns: 1.05fr 0.95fr; align-items: start; }
+        .vb-a2m__facts { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; column-gap: clamp(32px, 5vw, 72px); }
+        .vb-a2m__fact { grid-template-columns: 1fr; gap: 8px; }
+        .vb-a2m__fact:nth-child(1), .vb-a2m__fact:nth-child(2) { }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .vb-a2m-js-reveal [data-reveal] { opacity: 1; transform: none; transition: none; }
+        .vb-a2m__pic img { transition: none; }
+        .vb-a2m__pic:hover img { transform: none; }
+      }
+    </style>
+  
+    <div class="vb-a2m__inner">
+      <div>
+        <h2 class="vb-a2m__title" id="vb-a2m-title" data-reveal="">Салон, куда возвращаются</h2>
+        <p class="vb-a2m__lead" data-reveal="">«Ладья» — камерный салон на Большой Никитской: шесть рабочих мест, отдельный кабинет косметологии и маникюрная комната с естественным светом. Мы работаем <strong>по записи и без спешки</strong>: на один визит закладываем время с запасом, чтобы мастер не брал следующего гостя, пока вы не ушли.</p>
+        <p class="vb-a2m__lead" data-reveal="">В команде шесть мастеров со стажем от 6 до 15 лет. Каждый год мы доучиваемся в профильных академиях — колористика, дерматология, ламинирование — и приносим в салон только те техники, которые проверены на практике.</p>
+        <blockquote class="vb-a2m__quote" data-reveal="">
+          «Хороший результат — это в первую очередь гигиена и честная консультация. Мы никогда не продаём лишние процедуры».
+          <cite>Екатерина Лаврова, основательница салона</cite>
+        </blockquote>
+      </div>
+  
+      <div class="vb-a2m__gallery" data-reveal="">
+        <figure class="vb-a2m__pic vb-a2m__pic--tall">
+          <img src="https://static.tildacdn.pub/tild3562-6462-4564-b531-616230666135/photo-1760449405897-.jpg" alt="Стилист «Ладьи» укладывает волосы клиентке у зеркала" loading="lazy">
+        </figure>
+        <figure class="vb-a2m__pic vb-a2m__pic--short">
+          <img src="https://static.tildacdn.pub/tild6133-3733-4666-b432-383163376336/photo-1632345031435-.jpg" alt="Мастер ногтевого сервиса за работой: маникюр с покрытием гель-лак" loading="lazy">
+        </figure>
+        <p class="vb-a2m__gallery-note">Рабочие места салона · Большая Никитская, 24</p>
+      </div>
+  
+      <ul class="vb-a2m__facts">
+        <li class="vb-a2m__fact" data-reveal="">
+          <span class="vb-a2m__fact-tag">Опыт</span>
+          <h3>Мастера со стажем, не стажёры</h3>
+          <p>В салоне не работают новички: минимальный опыт команды — 6 лет. У каждого мастера портфолио и регулярная атестация раз в год.</p>
+        </li>
+        <li class="vb-a2m__fact" data-reveal="">
+          <span class="vb-a2m__fact-tag">Косметика</span>
+          <h3>Премиум-сегмент в работе и домашнем уходе</h3>
+          <p>Kérastase, Oribe и Davines для волос; Dermalogica, Image и Biologique Recherche в косметологии; Pretty Zinger и Thuya в ногтовом сервисе.</p>
+        </li>
+        <li class="vb-a2m__fact" data-reveal="">
+          <span class="vb-a2m__fact-tag">Стерилизация</span>
+          <h3>Обработка по медстандартам</h3>
+          <p>Металлический инструмент проходит трёхэтапную дезинфекцию и сухожаровой шкаф, крафт-пакеты вскрываются при госте, пилки и апельсиновые палочки — одноразовые.</p>
+        </li>
+        <li class="vb-a2m__fact" data-reveal="">
+          <span class="vb-a2m__fact-tag">Гарантия</span>
+          <h3>Доработка бесплатно</h3>
+          <p>Если укладка или покрытие вас не устроили в первые 3 дня — вернёмся и доработаем без оплаты. Так было с самого открытия в 2016 году.</p>
+        </li>
+      </ul>
+    </div>
+  
+    <script>
+      (function () {
+        var root = document.getElementById('about');
+        if (!root) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (!('IntersectionObserver' in window)) return;
+        var items = root.querySelectorAll('[data-reveal]');
+        if (!items.length) return;
+        root.classList.add('vb-a2m-js-reveal');
+        Array.prototype.forEach.call(items, function (el, i) {
+          el.style.transitionDelay = (Math.min(i % 3, 2) * 100) + 'ms';
+        });
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting) {
+              en.target.classList.add('is-in');
+              io.unobserve(en.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+        Array.prototype.forEach.call(items, function (el) { io.observe(el); });
+      })();
+    </script>
+  </section>
+  
+  <!-- Услуги и цены -->
+  <section class="vb-p9t" id="services" data-section-name="Услуги и цены" aria-labelledby="vb-p9t-title" data-vibeblock-unique-section="yes">
+    <style>
+      .vb-p9t, .vb-p9t * { box-sizing: border-box; }
+      .vb-p9t input, .vb-p9t textarea, .vb-p9t select { font: inherit; }
+  
+      .vb-p9t {
+        --p9t-ink: #2B2724;
+        --p9t-muted: #6E6259;
+        --p9t-bg: #FAF4EC;
+        --p9t-accent: #B0563B;
+        --p9t-line: rgba(43, 39, 36, 0.14);
+        background: var(--p9t-bg);
+        color: var(--p9t-ink);
+        font-family: var(--t-text-font);
+        padding: clamp(72px, 11vw, 132px) 0;
+        scroll-margin-top: 70px;
+      }
+      .vb-p9t__inner {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 0 clamp(20px, 4vw, 40px);
+      }
+      .vb-p9t__head {
+        display: grid;
+        gap: 16px;
+        margin-bottom: clamp(28px, 5vw, 44px);
+      }
+      .vb-p9t__title {
+        font-family: var(--t-headline-font);
+        font-weight: 400;
+        font-size: clamp(1.9rem, 3.6vw, 3rem);
+        line-height: 1.12;
+        letter-spacing: -0.015em;
+        margin: 0;
+        text-wrap: balance;
+      }
+      .vb-p9t__descr {
+        margin: 0;
+        font-size: 15.5px;
+        line-height: 1.65;
+        color: var(--p9t-muted);
+        max-width: 60ch;
+        text-wrap: pretty;
+      }
+  
+      .vb-p9t__tablist {
+        display: flex;
+        gap: 6px;
+        overflow-x: auto;
+        border-bottom: 1px solid var(--p9t-line);
+        margin-bottom: clamp(8px, 2vw, 12px);
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+      }
+      .vb-p9t__tablist::-webkit-scrollbar { display: none; }
+      .vb-p9t__tab {
+        flex: none;
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        margin-bottom: -1px;
+        padding: 14px 16px;
+        font-family: var(--t-text-font);
+        font-size: 14.5px;
+        letter-spacing: 0.02em;
+        color: var(--p9t-muted);
+        cursor: pointer;
+        white-space: nowrap;
+        transition: color 0.25s ease, border-color 0.25s ease;
+      }
+      .vb-p9t__tab:hover { color: var(--p9t-ink); }
+      .vb-p9t__tab[aria-selected="true"] {
+        color: var(--p9t-accent);
+        border-bottom-color: var(--p9t-accent);
+        font-weight: 600;
+      }
+      .vb-p9t__tab:focus-visible {
+        outline: 2px solid var(--p9t-accent);
+        outline-offset: -2px;
+        border-radius: 2px;
+      }
+  
+      .vb-p9t__panel[hidden] { display: none; }
+      .vb-p9t__panel {
+        animation: vb-p9t-fade 0.45s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+        padding-top: 8px;
+      }
+      @keyframes vb-p9t-fade {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: none; }
+      }
+      .vb-p9t__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .vb-p9t__item {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 4px 20px;
+        align-items: baseline;
+        padding: 20px 0;
+        border-bottom: 1px solid var(--p9t-line);
+      }
+      .vb-p9t__name {
+        font-family: var(--t-headline-font);
+        font-weight: 400;
+        font-size: clamp(17.5px, 2vw, 21px);
+        line-height: 1.3;
+        margin: 0;
+      }
+      .vb-p9t__price {
+        font-size: 16.5px;
+        font-weight: 600;
+        color: var(--p9t-accent);
+        white-space: nowrap;
+      }
+      .vb-p9t__note {
+        grid-column: 1 / 2;
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.55;
+        color: var(--p9t-muted);
+        max-width: 52ch;
+      }
+      .vb-p9t__dur {
+        grid-column: 2 / 3;
+        font-size: 13.5px;
+        color: var(--p9t-muted);
+        white-space: nowrap;
+      }
+      .vb-p9t__foot {
+        margin: clamp(26px, 4vw, 36px) 0 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 18px 28px;
+      }
+      .vb-p9t__foot-note {
+        margin: 0;
+        font-size: 13.5px;
+        line-height: 1.55;
+        color: var(--p9t-muted);
+        max-width: 48ch;
+      }
+      .vb-p9t__btn {
+        background: var(--p9t-accent);
+        color: #fff;
+        border-radius: 2px;
+        padding: 14px 28px;
+        font-size: 14.5px;
+        letter-spacing: 0.03em;
+        text-decoration: none;
+        display: inline-block;
+        transition: background-color 0.3s ease;
+        flex: none;
+      }
+      .vb-p9t__btn:hover { background: #93432C; }
+      .vb-p9t :focus-visible {
+        outline: 2px solid var(--p9t-accent);
+        outline-offset: 3px;
+        border-radius: 2px;
+      }
+      @media (min-width: 640px) {
+        .vb-p9t__tab { padding: 14px 20px; font-size: 15px; }
+        .vb-p9t__head { grid-template-columns: 1fr 1fr; align-items: end; gap: 32px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .vb-p9t__panel { animation: none; }
+        .vb-p9t__tab, .vb-p9t__btn { transition: none; }
+      }
+    </style>
+  
+    <div class="vb-p9t__inner">
+      <div class="vb-p9t__head">
+        <h2 class="vb-p9t__title" id="vb-p9t-title">Услуги и цены</h2>
+        <p class="vb-p9t__descr">Стоимость окончательная — без «доплат за длину» после процедуры: мастер называет точную цену на консультации до начала работы.</p>
+      </div>
+  
+      <div class="vb-p9t__tablist" role="tablist" aria-label="Категории услуг">
+        <button class="vb-p9t__tab" role="tab" id="vb-p9t-tab-1" aria-controls="vb-p9t-panel-1" aria-selected="true" type="button">Парикмахерский зал</button>
+        <button class="vb-p9t__tab" role="tab" id="vb-p9t-tab-2" aria-controls="vb-p9t-panel-2" aria-selected="false" tabindex="-1" type="button">Ногтевой сервис</button>
+        <button class="vb-p9t__tab" role="tab" id="vb-p9t-tab-3" aria-controls="vb-p9t-panel-3" aria-selected="false" tabindex="-1" type="button">Косметология</button>
+        <button class="vb-p9t__tab" role="tab" id="vb-p9t-tab-4" aria-controls="vb-p9t-panel-4" aria-selected="false" tabindex="-1" type="button">Брови и ресницы</button>
+      </div>
+  
+      <div class="vb-p9t__panel" role="tabpanel" id="vb-p9t-panel-1" aria-labelledby="vb-p9t-tab-1" tabindex="0">
+        <ul class="vb-p9t__list">
+          <li class="vb-p9t__item">
+            <h3 class="vb-p9t__name">Женская стрижка</h3>
+            <span class="vb-p9t__price">4 500 ₽</span>
+            <p class="vb-p9t__note">Консультация, мытьё, стрижка, укладка феном</p>
+            <span class="vb-p9t__dur">1 ч 30 мин</span>
+          </li>
+          <li class="vb-p9t__item">
+            <h3 class="vb-p9t__name">Мужская стрижка</h3>
+            <span class="vb-p9t__price">3 200 ₽</span>
+            <p class="vb-p9t__note">Классика или машинка, оформление контура</p>
+            <span class="vb-p9t__dur">1 час</span>
+          </li>
+          <li class="vb-p9t__item">
+            <h3 class="vb-p9t__name">Окрашивание в один тон</h3>
+            <span class="vb-p9t__price">от 7 500 ₽</span>
+            <p class="vb-p9t__note">Безаммиачная краска, уход по длине включён</p>
+            <span class="vb-p9t__dur">2 ч 30 мин</span>
+          </li>
+          <li class="vb-p9t__item">
+            <h3 class="vb-p9t__name">Сложное окрашивание: Airtouch, шатуш</h3>
+            <span class="vb-p9t__price">от 16 000 ₽</span>
+            <p class="vb-p9t__note">Составление индивидуальной схемы, тонаирование, реконструкция</p>
+            <span class="vb-p9t__dur">4–5 часов</span>
+          </li>
+          <li class="vb-p9t__item">
+            <h3 class="vb-p9t__name">Укладка (кладка)</h3>
+            <span class="vb-p9t__price">3 000 ₽</span>
+            <p class="vb-p9t__note">Мытьё, термозащита, укладка на щипцы или фен</p>
+            <span class="vb-p9t__dur">1 час</span>
+          </li>
+          <li class="vb-p9t__item">
+            <h3 class="vb-p9t__name">Ламинирование волос</h3>
+            <span class="vb-p9t__price">8 500 ₽</span>
+            <p class="vb-p9t__note">Состав на кератине, эффект 2–3 месяца</p>
+            <span class="vb-p9t__dur">2 часа</span>
+          </li>
+        </ul>
+      </div>
+  
+      <div class="vb-p9t__panel" role="tabpanel" id="vb-p9t-panel-2" aria-labelledby="vb-p9t-tab-2" tabindex="0" hidden="">
+        <ul class="vb-p9t__list">
+          <li class="vb-p9t__item">
+            <h3 class="vb-p9t__name">Маникюр с покрытием гель-лак</h3>
+            <span class="vb-p9t__price">4 200 ₽</span>
+            <p class="vb-p9t__note">Комбинированный аппаратный маникюр, выравнивание, покрытие</p>
+            <span class="vb-p9t__dur">1 ч 30 мин</span>
+          </li>
+          <li class="vb-p9t__item">
+            <h3 class="vb-p9t__name">Маникюр без покрытия</h3>
+            <span class="vb-p9t__price">2 800 ₽</span>
+            <p class="vb-p9t__note">Обработка кутикулы, форма, полировка, крем-уход</p>
+            <span class="vb-p9t__dur">1 час</span>
+          </li>
+          <li class="vb-p9t__item">
+            <h3 class="vb-p9t__name">Педикюр с покрытием</h3>
+            <span class="vb-p9t__price">5 600 ₽</span>
+            <p class="vb-p9t__note">Аппаратная техника, работа с проблемными зонами</p>
+            <span class="vb-p9t__dur">1 ч 45 мин</span>
+          </li>
+          <li class="vb-p9t__item">
+            <h3 class="vb-p9t__name">Наращивание и коррекция ногтей</h3>
+            <span class="vb-p9t__price">от 5 900 ₽</span>
+            <p class="vb-p9t__note">Гель, типсы или формы, укрепление зоны роста</p>
+            <span class="vb-p9t__dur">2 ч 30 мин</span>
+          </li>
+          <li class="vb-p9t__item">
+            <h3 class="vb-p9t__name">Укрепление ногтей гелем</h3>
+            <span class="vb-p9t__price">1 500 ₽</span>
+            <p class="vb-p9t__note">Доплата к маникюру, тонкий слой без утолщения</p>
+            <span class="vb-p9t__dur">30 мин</span>
+          </li>
+          <li class="vb-p9t__item">
+            <h3 class="vb-p9t__name">Снятие покрытия</h3>
+            <span class="vb-p9t__price">700 ₽</span>
+            <p class="vb-p9t__note">Без опилов, с уходом за кутикулой</p>
+            <span class="vb-p9t__dur">20 мин</span>
+          </li>
+        </ul>
+      </div>
+  
+      <div class="vb-p9t__panel" role="tabpanel" id="vb-p9t-panel-3" aria-labelledby="vb-p9t-tab-3" tabindex="0" hidden="">
+        <ul class="vb-p9t__list">
+          <li class="vb-p9t__item">
+            <h3 class="vb-p9t__name">Комбинированная чистка лица</h3>
+            <span class="vb-p9t__price">5 400 ₽</span>
+            <p class="vb-p9t__note">Ультразвук или ультразвук + пилинг, маска, уход</p>
+            <span class="vb-p9t__dur">1 ч 15 мин</span>
+          </li>
+          <li class="vb-p9t__item">
+            <h3 class="vb-p9t__name">Пилинг: миндальный, энзимный</h3>
+            <span class="vb-p9t__price">от 4 900 ₽</span>
+            <p class="vb-p9t__note">Подбор концентрации по типу кожи, без реабилитации</p>
+            <span class="vb-p9t__dur">45 мин</span>
+          </li>
+          <li class="vb-p9t__item">
+            <h3 class="vb-p9t__name">Скульптурный массаж лица</h3>
+            <span class="vb-p9t__price">4 200 ₽</span>
+            <p class="vb-p9t__note">Курс из 10 сеансов — 36 000 ₽</p>
+            <span class="vb-p9t__dur">1 час</span>
+          </li>
+          <li class="vb-p9t__item">
+            <h3 class="vb-p9t__name">Косметологический уход</h3>
+            <span class="vb-p9t__price">5 900 ₽</span>
+            <p class="vb-p9t__note">Диагностика кожи, подбор ухода Dermalogica или Biologique Recherche</p>
+            <span class="vb-p9t__dur">1 ч 20 мин</span>
+          </li>
+          <li class="vb-p9t__item">
+            <h3 class="vb-p9t__name">Мезотерапия лица</h3>
+            <span class="vb-p9t__price">от 6 500 ₽</span>
+            <p class="vb-p9t__note">Препарат подбирает врач-косметолог на консультации</p>
+            <span class="vb-p9t__dur">50 мин</span>
+          </li>
+          <li class="vb-p9t__item">
+            <h3 class="vb-p9t__name">Биоревитализация</h3>
+            <span class="vb-p9t__price">от 9 800 ₽</span>
+            <p class="vb-p9t__note">Гиалуроновая кислота, эффект с первого сеанса</p>
+            <span class="vb-p9t__dur">50 мин</span>
+          </li>
+        </ul>
+      </div>
+  
+      <div class="vb-p9t__panel" role="tabpanel" id="vb-p9t-panel-4" aria-labelledby="vb-p9t-tab-4" tabindex="0" hidden="">
+        <ul class="vb-p9t__list">
+          <li class="vb-p9t__item">
+            <h3 class="vb-p9t__name">Коррекция и окрашивание бровей</h3>
+            <span class="vb-p9t__price">2 400 ₽</span>
+            <p class="vb-p9t__note">Архитектура по форме лица, краска или хна, укладка гелем</p>
+            <span class="vb-p9t__dur">50 мин</span>
+          </li>
+          <li class="vb-p9t__item">
+            <h3 class="vb-p9t__name">Ламинирование бровей</h3>
+            <span class="vb-p9t__price">3 600 ₽</span>
+            <p class="vb-p9t__note">Состав Thuya, эффект 6–8 недель</p>
+            <span class="vb-p9t__dur">1 час</span>
+          </li>
+          <li class="vb-p9t__item">
+            <h3 class="vb-p9t__name">Ламинирование ресниц с ботоксом</h3>
+            <span class="vb-p9t__price">4 400 ₽</span>
+            <p class="vb-p9t__note">Завивка, уход с кератином и маслами</p>
+            <span class="vb-p9t__dur">1 ч 20 мин</span>
+          </li>
+          <li class="vb-p9t__item">
+            <h3 class="vb-p9t__name">Наращивание ресниц, 1D</h3>
+            <span class="vb-p9t__price">5 200 ₽</span>
+            <p class="vb-p9t__note">Классический эффект, гипоаллергенный клей</p>
+            <span class="vb-p9t__dur">2 ч 30 мин</span>
+          </li>
+          <li class="vb-p9t__item">
+            <h3 class="vb-p9t__name">Наращивание ресниц, 2D–3D</h3>
+            <span class="vb-p9t__price">от 6 400 ₽</span>
+            <p class="vb-p9t__note">Объёмный пучковый метод</p>
+            <span class="vb-p9t__dur">3 часа</span>
+          </li>
+          <li class="vb-p9t__item">
+            <h3 class="vb-p9t__name">Ботокс ресниц</h3>
+            <span class="vb-p9t__price">3 500 ₽</span>
+            <p class="vb-p9t__note">Восстановление после завивки или наращивания</p>
+            <span class="vb-p9t__dur">1 час</span>
+          </li>
+        </ul>
+      </div>
+  
+      <div class="vb-p9t__foot">
+        <p class="vb-p9t__foot-note">Цены действуют с 1 марта 2025 года. Точную стоимость сложного окрашивания мастер назовёт после теста на прядь.</p>
+        <a class="vb-p9t__btn t-btnflex t-btnflex_md" href="#booking"><span class="t-btnflex__text">Записаться на услугу</span></a>
+      </div>
+    </div>
+  
+    <script>
+      (function () {
+        var root = document.getElementById('services');
+        if (!root) return;
+        var tablist = root.querySelector('.vb-p9t__tablist');
+        if (!tablist) return;
+        var tabs = Array.prototype.slice.call(tablist.querySelectorAll('[role="tab"]'));
+  
+        function activate(tab, focus) {
+          tabs.forEach(function (t) {
+            var selected = t === tab;
+            t.setAttribute('aria-selected', selected ? 'true' : 'false');
+            t.tabIndex = selected ? 0 : -1;
+            var panel = document.getElementById(t.getAttribute('aria-controls'));
+            if (panel) panel.hidden = !selected;
+          });
+          if (focus) tab.focus();
+          if (history.replaceState) history.replaceState(null, '', '#' + tab.id);
+        }
+  
+        tabs.forEach(function (tab, i) {
+          tab.addEventListener('click', function () { activate(tab, false); });
+          tab.addEventListener('keydown', function (e) {
+            var next = null;
+            if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+            else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+            else if (e.key === 'Home') next = tabs[0];
+            else if (e.key === 'End') next = tabs[tabs.length - 1];
+            if (next) {
+              e.preventDefault();
+              activate(next, true);
+            }
+          });
+        });
+      })();
+    </script>
+  </section>
+  
+  <!-- Мастера -->
+  <section class="vb-r5v" id="masters" data-section-name="Мастера" aria-labelledby="vb-r5v-title" data-vibeblock-unique-section="yes">
+    <style>
+      .vb-r5v, .vb-r5v * { box-sizing: border-box; }
+      .vb-r5v input, .vb-r5v textarea, .vb-r5v select { font: inherit; }
+  
+      .vb-r5v {
+        --r5v-ink: #2B2724;
+        --r5v-muted: #6E6259;
+        --r5v-bg: #F1E7DA;
+        --r5v-accent: #B0563B;
+        --r5v-line: rgba(43, 39, 36, 0.16);
+        background: var(--r5v-bg);
+        color: var(--r5v-ink);
+        font-family: var(--t-text-font);
+        padding: clamp(72px, 11vw, 132px) 0;
+        scroll-margin-top: 70px;
+      }
+      .vb-r5v__inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 clamp(20px, 4vw, 40px);
+      }
+      .vb-r5v__head {
+        display: grid;
+        gap: 16px;
+        margin-bottom: clamp(32px, 5vw, 52px);
+      }
+      .vb-r5v__title {
+        font-family: var(--t-headline-font);
+        font-weight: 400;
+        font-size: clamp(1.9rem, 3.6vw, 3rem);
+        line-height: 1.12;
+        letter-spacing: -0.015em;
+        margin: 0;
+        text-wrap: balance;
+      }
+      .vb-r5v__descr {
+        margin: 0;
+        font-size: 15.5px;
+        line-height: 1.65;
+        color: var(--r5v-muted);
+        max-width: 58ch;
+        text-wrap: pretty;
+      }
+      .vb-r5v__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: clamp(20px, 3vw, 32px);
+      }
+      .vb-r5v__card { margin: 0; }
+      .vb-r5v__photo {
+        overflow: hidden;
+        border-radius: 2px;
+        aspect-ratio: 3 / 4;
+        background: #E3D5C4;
+      }
+      .vb-r5v__photo img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+      .vb-r5v__card:hover .vb-r5v__photo img { transform: scale(1.05); }
+      .vb-r5v__name {
+        font-family: var(--t-headline-font);
+        font-weight: 400;
+        font-size: 21px;
+        line-height: 1.25;
+        margin: 18px 0 6px;
+        transition: color 0.3s ease;
+      }
+      .vb-r5v__card:hover .vb-r5v__name { color: var(--r5v-accent); }
+      .vb-r5v__role {
+        margin: 0 0 8px;
+        font-size: 14.5px;
+        line-height: 1.5;
+        color: var(--r5v-ink);
+      }
+      .vb-r5v__exp {
+        margin: 0;
+        font-size: 13px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--r5v-accent);
+      }
+      .vb-r5v__spec {
+        margin: 10px 0 0;
+        font-size: 14px;
+        line-height: 1.55;
+        color: var(--r5v-muted);
+      }
+  
+      .vb-r5v-js-reveal [data-reveal] {
+        opacity: 0;
+        transform: translateY(26px);
+        transition: opacity 0.75s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.75s cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+      .vb-r5v-js-reveal [data-reveal].is-in { opacity: 1; transform: none; }
+  
+      @media (min-width: 640px) {
+        .vb-r5v__head { grid-template-columns: 1fr 1fr; align-items: end; gap: 32px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .vb-r5v-js-reveal [data-reveal] { opacity: 1; transform: none; transition: none; }
+        .vb-r5v__photo img { transition: none; }
+        .vb-r5v__card:hover .vb-r5v__photo img { transform: none; }
+      }
+    </style>
+  
+    <div class="vb-r5v__inner">
+      <div class="vb-r5v__head">
+        <h2 class="vb-r5v__title" id="vb-r5v-title" data-reveal="">Мастера</h2>
+        <p class="vb-r5v__descr" data-reveal="">Каждого мастера можно выбрать при записи — администратор уточнит свободное время. Портфолио и аттестаты смотрите по ссылке в карточке.</p>
+      </div>
+  
+      <div class="vb-r5v__grid">
+        <figure class="vb-r5v__card" data-reveal="">
+          <div class="vb-r5v__photo">
+            <img src="https://static.tildacdn.pub/tild6662-6634-4334-b135-316532373931/photo-1506863530036-.jpg" alt="Екатерина Лаврова — топ-стилист и колорист салона ЛАДЬЯ" loading="lazy">
+          </div>
+          <figcaption>
+            <h3 class="vb-r5v__name">Екатерина Лаврова</h3>
+            <p class="vb-r5v__role">Топ-стилист, колорист, основательница</p>
+            <p class="vb-r5v__exp">Стаж 15 лет</p>
+            <p class="vb-r5v__spec">Сложное окрашивание, коррекция цвета, восстановление после осветления</p>
+          </figcaption>
+        </figure>
+  
+        <figure class="vb-r5v__card" data-reveal="">
+          <div class="vb-r5v__photo">
+            <img src="https://static.tildacdn.pub/tild3438-6561-4632-b134-393664386365/photo-1673865641073-.jpg" alt="Марина Соболева — врач-косметолог салона ЛАДЬЯ" loading="lazy">
+          </div>
+          <figcaption>
+            <h3 class="vb-r5v__name">Марина Соболева</h3>
+            <p class="vb-r5v__role">Врач-косметолог, эстетист</p>
+            <p class="vb-r5v__exp">Стаж 12 лет</p>
+            <p class="vb-r5v__spec">Чистки, пилинги, мезотерапия и биоревитализация, ведёт курс уходов</p>
+          </figcaption>
+        </figure>
+  
+        <figure class="vb-r5v__card" data-reveal="">
+          <div class="vb-r5v__photo">
+            <img src="https://static.tildacdn.pub/tild3061-3462-4330-b865-663935313663/photo-1758600587674-.jpg" alt="Алина Гордеева — мастер ногтевого сервиса салона ЛАДЬЯ" loading="lazy">
+          </div>
+          <figcaption>
+            <h3 class="vb-r5v__name">Алина Гордеева</h3>
+            <p class="vb-r5v__role">Мастер ногтевого сервиса</p>
+            <p class="vb-r5v__exp">Стаж 8 лет</p>
+            <p class="vb-r5v__spec">Комбинированный маникюр, укрепление тонким слоем, педикюр</p>
+          </figcaption>
+        </figure>
+  
+        <figure class="vb-r5v__card" data-reveal="">
+          <div class="vb-r5v__photo">
+            <img src="https://static.tildacdn.pub/tild3837-6638-4532-a439-616133626333/photo-1647462741268-.jpg" alt="Дарья Ким — бровист и лешмейкер салона ЛАДЬЯ" loading="lazy">
+          </div>
+          <figcaption>
+            <h3 class="vb-r5v__name">Дарья Ким</h3>
+            <p class="vb-r5v__role">Бровист, лешмейкер</p>
+            <p class="vb-r5v__exp">Стаж 6 лет</p>
+            <p class="vb-r5v__spec">Архитектура бровей, ламинирование, наращивание ресниц 1D–3D</p>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  
+    <script>
+      (function () {
+        var root = document.getElementById('masters');
+        if (!root) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (!('IntersectionObserver' in window)) return;
+        var items = root.querySelectorAll('[data-reveal]');
+        if (!items.length) return;
+        root.classList.add('vb-r5v-js-reveal');
+        Array.prototype.forEach.call(items, function (el, i) {
+          el.style.transitionDelay = (Math.min(i % 4, 3) * 90) + 'ms';
+        });
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting) {
+              en.target.classList.add('is-in');
+              io.unobserve(en.target);
+            }
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+        Array.prototype.forEach.call(items, function (el) { io.observe(el); });
+      })();
+    </script>
+  </section>
+  
+  <!-- Отзывы гостей -->
+  <section class="vb-c8w" id="reviews" data-section-name="Отзывы гостей" aria-labelledby="vb-c8w-title" data-vibeblock-unique-section="yes">
+    <style>
+      .vb-c8w, .vb-c8w * { box-sizing: border-box; }
+      .vb-c8w input, .vb-c8w textarea, .vb-c8w select { font: inherit; }
+  
+      .vb-c8w {
+        --c8w-bg: #2B2724;
+        --c8w-ink: #F4ECE1;
+        --c8w-muted: #BFB2A3;
+        --c8w-accent: #D98E63;
+        --c8w-card: #342F2A;
+        --c8w-line: rgba(244, 236, 225, 0.14);
+        background: var(--c8w-bg);
+        color: var(--c8w-ink);
+        font-family: var(--t-text-font);
+        padding: clamp(72px, 11vw, 132px) 0;
+        scroll-margin-top: 70px;
+      }
+      .vb-c8w__inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 clamp(20px, 4vw, 40px);
+      }
+      .vb-c8w__head {
+        display: grid;
+        gap: 16px;
+        margin-bottom: clamp(28px, 5vw, 44px);
+        align-items: end;
+      }
+      .vb-c8w__title {
+        font-family: var(--t-headline-font);
+        font-weight: 400;
+        font-size: clamp(1.9rem, 3.6vw, 3rem);
+        line-height: 1.12;
+        letter-spacing: -0.015em;
+        margin: 0;
+        text-wrap: balance;
+      }
+      .vb-c8w__rating {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 14.5px;
+        color: var(--c8w-muted);
+      }
+      .vb-c8w__rating b {
+        color: var(--c8w-ink);
+        font-family: var(--t-headline-font);
+        font-weight: 400;
+        font-size: 22px;
+      }
+  
+      .vb-c8w__viewport {
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        margin: 0 calc(-1 * clamp(20px, 4vw, 40px));
+        padding: 4px clamp(20px, 4vw, 40px) 8px;
+      }
+      .vb-c8w__viewport::-webkit-scrollbar { display: none; }
+      .vb-c8w__track {
+        display: flex;
+        gap: clamp(16px, 2vw, 24px);
+        width: max-content;
+        padding-right: clamp(20px, 4vw, 40px);
+      }
+      .vb-c8w__card {
+        scroll-snap-align: start;
+        flex: 0 0 min(340px, 84vw);
+        background: var(--c8w-card);
+        border: 1px solid var(--c8w-line);
+        border-radius: 2px;
+        padding: clamp(24px, 3vw, 32px);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin: 0;
+        transition: border-color 0.3s ease, transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+      .vb-c8w__card:hover {
+        border-color: rgba(217, 142, 99, 0.5);
+        transform: translateY(-4px);
+      }
+      .vb-c8w__stars {
+        color: var(--c8w-accent);
+        font-size: 15px;
+        letter-spacing: 0.18em;
+        line-height: 1;
+      }
+      .vb-c8w__text {
+        margin: 0;
+        font-size: 15.5px;
+        line-height: 1.65;
+        color: var(--c8w-ink);
+        text-wrap: pretty;
+      }
+      .vb-c8w__foot {
+        margin-top: auto;
+        padding-top: 16px;
+        border-top: 1px solid var(--c8w-line);
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .vb-c8w__author {
+        font-family: var(--t-headline-font);
+        font-size: 17px;
+        margin: 0;
+      }
+      .vb-c8w__source {
+        font-size: 12.5px;
+        letter-spacing: 0.05em;
+        color: var(--c8w-muted);
+        margin: 0;
+      }
+      .vb-c8w__source a { color: var(--c8w-accent); text-decoration: none; }
+      .vb-c8w__source a:hover { text-decoration: underline; }
+  
+      .vb-c8w__nav {
+        display: flex;
+        gap: 10px;
+        margin-top: clamp(20px, 3vw, 28px);
+      }
+      .vb-c8w__arrow {
+        width: 46px; height: 46px;
+        border-radius: 50%;
+        border: 1px solid var(--c8w-line);
+        background: transparent;
+        color: var(--c8w-ink);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+      }
+      .vb-c8w__arrow:hover:not(:disabled) {
+        background: var(--c8w-accent);
+        border-color: var(--c8w-accent);
+        color: #2B2724;
+      }
+      .vb-c8w__arrow:disabled { opacity: 0.35; cursor: default; }
+      .vb-c8w__arrow svg { width: 18px; height: 18px; display: block; }
+      .vb-c8w :focus-visible {
+        outline: 2px solid var(--c8w-accent);
+        outline-offset: 3px;
+        border-radius: 2px;
+      }
+  
+      .vb-c8w-js-reveal [data-reveal] {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+      .vb-c8w-js-reveal [data-reveal].is-in { opacity: 1; transform: none; }
+  
+      @media (min-width: 640px) {
+        .vb-c8w__card { flex-basis: 360px; }
+        .vb-c8w__head { grid-template-columns: 1fr auto; gap: 32px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .vb-c8w-js-reveal [data-reveal] { opacity: 1; transform: none; transition: none; }
+        .vb-c8w__card { transition: none; }
+        .vb-c8w__card:hover { transform: none; }
+      }
+    </style>
+  
+    <div class="vb-c8w__inner">
+      <div class="vb-c8w__head">
+        <h2 class="vb-c8w__title" id="vb-c8w-title" data-reveal="">Отзывы гостей</h2>
+        <p class="vb-c8w__rating" data-reveal=""><b>4,9</b> из 5 — средняя оценка на Яндекс Картах</p>
+      </div>
+  
+      <div class="vb-c8w__viewport" id="vb-c8w-viewport" tabindex="0" role="region" aria-label="Отзывы гостей, прокрутка по горизонтали">
+        <div class="vb-c8w__track">
+          <figure class="vb-c8w__card" data-reveal="">
+            <div class="vb-c8w__stars" role="img" aria-label="Оценка: 5 из 5">★★★★★</div>
+            <blockquote class="vb-c8w__text" style="margin:0">«Пришла на Airtouch с отчаянием — предыдущий салон сжёг волосы. Екатерина за два визита вернула цвет и длину, теперь хожу только сюда. Отдельное спасибо за честность: сказали, сколько займёт и почему так дорого, без сюрпризов в чеке».</blockquote>
+            <figcaption class="vb-c8w__foot">
+              <p class="vb-c8w__author">Ольга В.</p>
+              <p class="vb-c8w__source"><a href="https://yandex.ru/maps/" target="_blank" rel="noopener">Яндекс Карты</a> · февраль 2025</p>
+            </figcaption>
+          </figure>
+  
+          <figure class="vb-c8w__card" data-reveal="">
+            <div class="vb-c8w__stars" role="img" aria-label="Оценка: 5 из 5">★★★★★</div>
+            <blockquote class="vb-c8w__text" style="margin:0">«Маникюр у Алины держится ровно три недели — рекорд для меня. Всё стерильно, крафт-пакет вскрыли при мне, пилки одноразовые. После многих салонов это наконец-то спокойствие».</blockquote>
+            <figcaption class="vb-c8w__foot">
+              <p class="vb-c8w__author">Наталья К.</p>
+              <p class="vb-c8w__source"><a href="https://yandex.ru/maps/" target="_blank" rel="noopener">Яндекс Карты</a> · январь 2025</p>
+            </figcaption>
+          </figure>
+  
+          <figure class="vb-c8w__card" data-reveal="">
+            <div class="vb-c8w__stars" role="img" aria-label="Оценка: 5 из 5">★★★★★</div>
+            <blockquote class="vb-c8w__text" style="margin:0">«К Марине прихожу на чистки второй год. Она врач и это видно: разбирает кожу, называет составы по именам, не продаёт лишнего. После биоревитализации синяков не было вообще, хотя боялась».</blockquote>
+            <figcaption class="vb-c8w__foot">
+              <p class="vb-c8w__author">Ирина С.</p>
+              <p class="vb-c8w__source"><a href="https://yandex.ru/maps/" target="_blank" rel="noopener">Яндекс Карты</a> · декабрь 2024</p>
+            </figcaption>
+          </figure>
+  
+          <figure class="vb-c8w__card" data-reveal="">
+            <div class="vb-c8w__stars" role="img" aria-label="Оценка: 5 из 5">★★★★★</div>
+            <blockquote class="vb-c8w__text" style="margin:0">«Дарья спасла мои брови после неудачной коррекции в другом месте: вытянула форму за два визита, теперь рисую их за минуту. Ламинирование ресниц тоже её заслуга — взгляд открытый, без «паучьих лап»».</blockquote>
+            <figcaption class="vb-c8w__foot">
+              <p class="vb-c8w__author">Полина Д.</p>
+              <p class="vb-c8w__source"><a href="https://yandex.ru/maps/" target="_blank" rel="noopener">Яндекс Карты</a> · ноябрь 2024</p>
+            </figcaption>
+          </figure>
+  
+          <figure class="vb-c8w__card" data-reveal="">
+            <div class="vb-c8w__stars" role="img" aria-label="Оценка: 5 из 5">★★★★★</div>
+            <blockquote class="vb-c8w__text" style="margin:0">«Записалась в 8 утра перед работой — уложились в час, укладка простояла весь день под дождём. Кофе, плед, тишина: редкость для салона в центре. Уже забронировала следующее окрашивание».</blockquote>
+            <figcaption class="vb-c8w__foot">
+              <p class="vb-c8w__author">Екатерина Ж.</p>
+              <p class="vb-c8w__source"><a href="https://yandex.ru/maps/" target="_blank" rel="noopener">Яндекс Карты</a> · март 2025</p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+  
+      <div class="vb-c8w__nav">
+        <button class="vb-c8w__arrow" type="button" id="vb-c8w-prev" aria-label="Показать предыдущий отзыв" aria-controls="vb-c8w-viewport">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </button>
+        <button class="vb-c8w__arrow" type="button" id="vb-c8w-next" aria-label="Показать следующий отзыв" aria-controls="vb-c8w-viewport">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </button>
+      </div>
+    </div>
+  
+    <script>
+      (function () {
+        var root = document.getElementById('reviews');
+        if (!root) return;
+        var viewport = root.querySelector('#vb-c8w-viewport');
+        var prev = root.querySelector('#vb-c8w-prev');
+        var next = root.querySelector('#vb-c8w-next');
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+        function step() {
+          var card = viewport.querySelector('.vb-c8w__card');
+          return card ? card.getBoundingClientRect().width + 20 : 340;
+        }
+        function updateArrows() {
+          var max = viewport.scrollWidth - viewport.clientWidth - 4;
+          prev.disabled = viewport.scrollLeft <= 4;
+          next.disabled = viewport.scrollLeft >= max;
+        }
+        prev.addEventListener('click', function () {
+          viewport.scrollBy({ left: -step(), behavior: reduce ? 'auto' : 'smooth' });
+        });
+        next.addEventListener('click', function () {
+          viewport.scrollBy({ left: step(), behavior: reduce ? 'auto' : 'smooth' });
+        });
+        viewport.addEventListener('scroll', updateArrows, { passive: true });
+        window.addEventListener('resize', updateArrows);
+        updateArrows();
+  
+        if (!reduce && 'IntersectionObserver' in window) {
+          var items = root.querySelectorAll('[data-reveal]');
+          root.classList.add('vb-c8w-js-reveal');
+          Array.prototype.forEach.call(items, function (el, i) {
+            el.style.transitionDelay = (Math.min(i % 4, 3) * 90) + 'ms';
+          });
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+              if (en.isIntersecting) {
+                en.target.classList.add('is-in');
+                io.unobserve(en.target);
+              }
+            });
+          }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+          Array.prototype.forEach.call(items, function (el) { io.observe(el); });
+        }
+      })();
+    </script>
+  </section>
+  
+  <!-- Запись онлайн -->
+  <section class="vb-f3x" id="booking" data-section-name="Запись онлайн" aria-labelledby="vb-f3x-title" data-vibeblock-unique-section="yes">
+    <style>
+      .vb-f3x, .vb-f3x * { box-sizing: border-box; }
+      .vb-f3x input, .vb-f3x textarea, .vb-f3x select { font: inherit; }
+  
+      .vb-f3x {
+        --f3x-ink: #2B2724;
+        --f3x-muted: #6E6259;
+        --f3x-bg: #F1E7DA;
+        --f3x-field: #FBF6EF;
+        --f3x-accent: #B0563B;
+        --f3x-accent-dark: #93432C;
+        --f3x-line: rgba(43, 39, 36, 0.2);
+        --f3x-error: #A33B22;
+        background: var(--f3x-bg);
+        color: var(--f3x-ink);
+        font-family: var(--t-text-font);
+        padding: clamp(72px, 11vw, 132px) 0;
+        scroll-margin-top: 70px;
+      }
+      .vb-f3x__inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 clamp(20px, 4vw, 40px);
+        display: grid;
+        gap: clamp(36px, 6vw, 72px);
+        align-items: start;
+      }
+      .vb-f3x__title {
+        font-family: var(--t-headline-font);
+        font-weight: 400;
+        font-size: clamp(1.9rem, 3.6vw, 3rem);
+        line-height: 1.12;
+        letter-spacing: -0.015em;
+        margin: 0 0 18px;
+        text-wrap: balance;
+      }
+      .vb-f3x__descr {
+        margin: 0 0 26px;
+        font-size: 15.5px;
+        line-height: 1.65;
+        color: var(--f3x-muted);
+        max-width: 54ch;
+        text-wrap: pretty;
+      }
+      .vb-f3x__contacts {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 14px;
+        font-size: 15px;
+      }
+      .vb-f3x__contacts a {
+        color: var(--f3x-ink);
+        text-decoration: none;
+        border-bottom: 1px solid var(--f3x-line);
+        transition: color 0.25s ease, border-color 0.25s ease;
+      }
+      .vb-f3x__contacts a:hover { color: var(--f3x-accent); border-color: var(--f3x-accent); }
+      .vb-f3x__contacts b { font-weight: 600; }
+  
+      .vb-f3x__panel {
+        background: var(--f3x-field);
+        border: 1px solid var(--f3x-line);
+        border-radius: 3px;
+        padding: clamp(24px, 4vw, 44px);
+      }
+      .vb-f3x-form {
+        display: grid;
+        gap: 20px;
+        color: var(--f3x-ink);
+      }
+      .vb-f3x__row {
+        display: grid;
+        gap: 20px;
+      }
+      .vb-f3x-field { display: grid; gap: 7px; }
+      .vb-f3x-field > label,
+      .vb-f3x__check > label {
+        font-size: 13.5px;
+        letter-spacing: 0.04em;
+        color: var(--f3x-ink);
+      }
+      .vb-f3x__req { color: var(--f3x-accent); }
+      .vb-f3x-field input,
+      .vb-f3x-field select {
+        width: 100%;
+        padding: 13px 14px;
+        border: 1px solid var(--f3x-line);
+        border-radius: 2px;
+        background: #fff;
+        color: var(--f3x-ink);
+        font-size: 15.5px;
+        transition: border-color 0.25s ease, box-shadow 0.25s ease;
+      }
+      .vb-f3x-field input::placeholder { color: #8A7E72; opacity: 1; }
+      .vb-f3x-field input:focus,
+      .vb-f3x-field select:focus {
+        outline: none;
+        border-color: var(--f3x-accent);
+        box-shadow: 0 0 0 3px rgba(176, 86, 59, 0.16);
+      }
+      .vb-f3x-field input:focus-visible,
+      .vb-f3x-field select:focus-visible {
+        outline: 2px solid var(--f3x-accent);
+        outline-offset: 1px;
+      }
+      .vb-f3x-field input[aria-invalid="true"],
+      .vb-f3x-field select[aria-invalid="true"] { border-color: var(--f3x-error); }
+      .t-input-error {
+        font-size: 13px;
+        line-height: 1.4;
+        color: var(--f3x-error);
+        min-height: 0;
+      }
+      .t-input-error:empty { display: none; }
+  
+      .vb-f3x__check {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+      }
+      .vb-f3x__check input[type="checkbox"] {
+        width: 20px; height: 20px;
+        margin: 1px 0 0;
+        flex: none;
+        accent-color: var(--f3x-accent);
+        cursor: pointer;
+      }
+      .vb-f3x__check label {
+        font-size: 13.5px;
+        line-height: 1.55;
+        color: var(--f3x-muted);
+        cursor: pointer;
+      }
+      .vb-f3x__check label a { color: var(--f3x-ink); }
+      .vb-f3x__check-wrap { display: grid; gap: 6px; }
+      .vb-f3x__check-wrap .t-input-error { padding-left: 32px; }
+  
+      .vb-f3x__submit {
+        background: var(--f3x-accent);
+        color: #fff;
+        border: none;
+        border-radius: 2px;
+        padding: 16px 30px;
+        font-size: 15.5px;
+        letter-spacing: 0.03em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        justify-self: start;
+      }
+      .vb-f3x__submit:hover { background: var(--f3x-accent-dark); }
+      .vb-f3x__submit:focus-visible {
+        outline: 2px solid var(--f3x-accent);
+        outline-offset: 3px;
+      }
+      .vb-f3x__fine {
+        margin: 0;
+        font-size: 12.5px;
+        line-height: 1.55;
+        color: var(--f3x-muted);
+      }
+  
+      .vb-f3x__success {
+        display: grid;
+        gap: 14px;
+        justify-items: start;
+      }
+      .vb-f3x__success[hidden] { display: none; }
+      .vb-f3x__success-icon {
+        width: 56px; height: 56px;
+        border-radius: 50%;
+        background: rgba(176, 86, 59, 0.12);
+        color: var(--f3x-accent);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .vb-f3x__success-icon svg { width: 26px; height: 26px; }
+      .vb-f3x__success h3 {
+        font-family: var(--t-headline-font);
+        font-weight: 400;
+        font-size: clamp(22px, 3vw, 28px);
+        margin: 0;
+      }
+      .vb-f3x__success p {
+        margin: 0;
+        font-size: 15.5px;
+        line-height: 1.65;
+        color: var(--f3x-muted);
+        max-width: 46ch;
+      }
+      .vb-f3x__success:focus-visible {
+        outline: 2px solid var(--f3x-accent);
+        outline-offset: 4px;
+        border-radius: 2px;
+      }
+  
+      .vb-f3x-js-reveal [data-reveal] {
+        opacity: 0;
+        transform: translateY(26px);
+        transition: opacity 0.75s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.75s cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+      .vb-f3x-js-reveal [data-reveal].is-in { opacity: 1; transform: none; }
+  
+      @media (min-width: 560px) {
+        .vb-f3x__row--2 { grid-template-columns: 1fr 1fr; }
+      }
+      @media (min-width: 960px) {
+        .vb-f3x__inner { grid-template-columns: 0.85fr 1.15fr; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .vb-f3x-js-reveal [data-reveal] { opacity: 1; transform: none; transition: none; }
+        .vb-f3x-field input, .vb-f3x-field select, .vb-f3x__submit, .vb-f3x__contacts a { transition: none; }
+      }
+    </style>
+  
+    <div class="vb-f3x__inner">
+      <div>
+        <h2 class="vb-f3x__title" id="vb-f3x-title" data-reveal="">Запись онлайн</h2>
+        <p class="vb-f3x__descr" data-reveal="">Оставьте заявку — администратор перезвонит в течение 15 минут в рабочее время, подтвердит мастера и время. Отмена и перенос записи бесплатны за 3 часа до визита.</p>
+        <ul class="vb-f3x__contacts" data-reveal="">
+          <li><b>Телефон:</b> <a href="tel:+74951204567"></a></li>
+          <li><b>Часы работы:</b> ежедневно 10:00–21:00</li>
+          <li><b>Адрес:</b> Большая Никитская, 24, стр. 1</li>
+        </ul>
+      </div>
+  
+      <div class="vb-f3x__panel" data-reveal="">
+        <form id="vb-f3x-form" name="vb-f3x-form" class="vb-f3x-form" action="#" method="POST" data-vibeblock-form="true" data-inputbox=".vb-f3x-field" novalidate="">
+          <div class="js-errorbox-all"><div class="js-rule-error-all"></div></div>
+  
+          <div class="vb-f3x__row vb-f3x__row--2">
+            <div class="vb-f3x-field">
+              <label for="vb-f3x-name">Имя <span class="vb-f3x__req" aria-hidden="true">*</span></label>
+              <input type="text" id="vb-f3x-name" name="name" autocomplete="name" placeholder="Как к вам обращаться" class="js-tilda-rule" data-tilda-req="1" data-tilda-rule="string" data-tilda-rule-minlength="2" aria-required="true" aria-describedby="vb-f3x-name-err">
+              <div class="t-input-error" id="vb-f3x-name-err"></div>
+            </div>
+  
+            <div class="vb-f3x-field">
+              <label for="vb-f3x-phone">Телефон <span class="vb-f3x__req" aria-hidden="true">*</span></label>
+              <input type="tel" id="vb-f3x-phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="+7 (___) ___-__-__" class="js-tilda-rule" data-tilda-req="1" data-tilda-rule="phone" aria-required="true" aria-describedby="vb-f3x-phone-err">
+              <div class="t-input-error" id="vb-f3x-phone-err"></div>
+            </div>
+          </div>
+  
+          <div class="vb-f3x-field">
+            <label for="vb-f3x-service">Услуга <span class="vb-f3x__req" aria-hidden="true">*</span></label>
+            <select id="vb-f3x-service" name="service" class="js-tilda-rule" data-tilda-req="1" aria-required="true" aria-describedby="vb-f3x-service-err">
+              <option value="" selected="">Выберите услугу</option>
+              <optgroup label="Парикмахерский зал">
+                <option value="Женская стрижка">Женская стрижка — 4 500 ₽</option>
+                <option value="Мужская стрижка">Мужская стрижка — 3 200 ₽</option>
+                <option value="Окрашивание в один тон">Окрашивание в один тон — от 7 500 ₽</option>
+                <option value="Сложное окрашивание">Сложное окрашивание — от 16 000 ₽</option>
+                <option value="Укладка">Укладка — 3 000 ₽</option>
+                <option value="Ламинирование волос">Ламинирование волос — 8 500 ₽</option>
+              </optgroup>
+              <optgroup label="Ногтевой сервис">
+                <option value="Маникюр с покрытием">Маникюр с покрытием — 4 200 ₽</option>
+                <option value="Маникюр без покрытия">Маникюр без покрытия — 2 800 ₽</option>
+                <option value="Педикюр с покрытием">Педикюр с покрытием — 5 600 ₽</option>
+                <option value="Наращивание и коррекция">Наращивание и коррекция — от 5 900 ₽</option>
+              </optgroup>
+              <optgroup label="Косметология">
+                <option value="Чистка лица">Комбинированная чистка — 5 400 ₽</option>
+                <option value="Пилинг">Пилинг — от 4 900 ₽</option>
+                <option value="Скульптурный массаж">Скульптурный массаж лица — 4 200 ₽</option>
+                <option value="Мезотерапия">Мезотерапия — от 6 500 ₽</option>
+                <option value="Биоревитализация">Биоревитализация — от 9 800 ₽</option>
+              </optgroup>
+              <optgroup label="Брови и ресницы">
+                <option value="Коррекция и окрашивание бровей">Коррекция и окрашивание бровей — 2 400 ₽</option>
+                <option value="Ламинирование бровей">Ламинирование бровей — 3 600 ₽</option>
+                <option value="Ламинирование ресниц">Ламинирование ресниц с ботоксом — 4 400 ₽</option>
+                <option value="Наращивание ресниц">Наращивание ресниц — от 5 200 ₽</option>
+              </optgroup>
+            </select>
+            <div class="t-input-error" id="vb-f3x-service-err"></div>
+          </div>
+  
+          <div class="vb-f3x__check-wrap vb-f3x-field">
+            <div class="vb-f3x__check">
+              <input type="checkbox" id="vb-f3x-agree" name="agree" value="yes" class="js-tilda-rule" data-tilda-req="1" aria-required="true" aria-describedby="vb-f3x-agree-err">
+              <label for="vb-f3x-agree">Согласен на обработку персональных данных в соответствии с <a href="#privacy">Политикой конфиденциальности</a> <span class="vb-f3x__req" aria-hidden="true">*</span></label>
+            </div>
+            <div class="t-input-error" id="vb-f3x-agree-err"></div>
+          </div>
+  
+          <button type="submit" class="vb-f3x__submit t-submit t-btnflex t-btnflex_md" style="border-radius: 5px !important; color: #fff !important;"><span class="t-btnflex__text">Записаться</span></button>
+          <p class="vb-f3x__fine">Нажимая «Записаться», вы отправляете заявку на подтверждение — звонок администратора, а не автобронирование.</p>
+        </form>
+  
+        <div class="vb-f3x__success" id="vb-f3x-success" role="status" tabindex="-1" hidden="">
+          <span class="vb-f3x__success-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12.5l5 5L20 6.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </span>
+          <h3>Заявка отправлена</h3>
+          <p>Мы свяжемся с вами для подтверждения записи — обычно это занимает до 15 минут в рабочее время.</p>
+        </div>
+      </div>
+    </div>
+  
+    <script>
+      (function () {
+        var root = document.getElementById('booking');
+        if (!root) return;
+        var form = root.querySelector('#vb-f3x-form');
+        var success = root.querySelector('#vb-f3x-success');
+        var phone = root.querySelector('#vb-f3x-phone');
+        if (!form || !success) return;
+  
+        /* Маска телефона +7 (999) 999-99-99 */
+        function formatPhone(value) {
+          var d = value.replace(/\D/g, '');
+          if (d.charAt(0) === '8') d = '7' + d.slice(1);
+          if (d.charAt(0) !== '7') d = '7' + d;
+          d = d.slice(0, 11);
+          var out = '+7';
+          if (d.length > 1) out += ' (' + d.slice(1, 4);
+          if (d.length >= 4) out += ')';
+          if (d.length > 4) out += ' ' + d.slice(4, 7);
+          if (d.length > 7) out += '-' + d.slice(7, 9);
+          if (d.length > 9) out += '-' + d.slice(9, 11);
+          return out;
+        }
+        phone.addEventListener('input', function () {
+          var atEnd = phone.selectionStart === phone.value.length;
+          phone.value = formatPhone(phone.value);
+          if (atEnd) {
+            var len = phone.value.length;
+            try { phone.setSelectionRange(len, len); } catch (err) {}
+          }
+        });
+        phone.addEventListener('focus', function () {
+          if (!phone.value) phone.value = '+7';
+        });
+        phone.addEventListener('blur', function () {
+          if (phone.value.replace(/\D/g, '').length <= 1) phone.value = '';
+        });
+  
+        function setError(field, message) {
+          var box = form.querySelector('#' + field.id + '-err');
+          if (box) box.textContent = message || '';
+          field.setAttribute('aria-invalid', message ? 'true' : 'false');
+        }
+  
+        function validateManual() {
+          var ok = true;
+          var name = form.querySelector('#vb-f3x-name');
+          var service = form.querySelector('#vb-f3x-service');
+          var agree = form.querySelector('#vb-f3x-agree');
+  
+          if (name.value.trim().length < 2) {
+            setError(name, 'Укажите имя — минимум 2 символа');
+            ok = false;
+          } else setError(name, '');
+  
+          var digits = phone.value.replace(/\D/g, '');
+          if (digits.length !== 11) {
+            setError(phone, 'Введите номер телефона полностью');
+            ok = false;
+          } else setError(phone, '');
+  
+          if (!service.value) {
+            setError(service, 'Выберите услугу из списка');
+            ok = false;
+          } else setError(service, '');
+  
+          var agreeErr = form.querySelector('#vb-f3x-agree-err');
+          if (!agree.checked) {
+            if (agreeErr) agreeErr.textContent = 'Нужно согласие на обработку данных';
+            agree.setAttribute('aria-invalid', 'true');
+            ok = false;
+          } else {
+            if (agreeErr) agreeErr.textContent = '';
+            agree.setAttribute('aria-invalid', 'false');
+          }
+  
+          if (!ok) {
+            var firstBad = form.querySelector('[aria-invalid="true"]');
+            if (firstBad) firstBad.focus();
+          }
+          return ok;
+        }
+  
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var ok;
+          if (window.tildaForm && typeof window.tildaForm.validate === 'function') {
+            window.tildaForm.hideErrors(form);
+            var errors = window.tildaForm.validate(form);
+            ok = !window.tildaForm.showErrors(form, errors);
+            if (!ok) {
+              var bad = form.querySelector('[aria-invalid="true"]');
+              if (!bad) {
+                var firstErr = form.querySelector('.t-input-error:not(:empty)');
+                if (firstErr) bad = firstErr.closest('.vb-f3x-field, .vb-f3x__check-wrap');
+              }
+              if (bad && typeof bad.focus === 'function') bad.focus();
+            }
+          } else {
+            ok = validateManual();
+          }
+          if (!ok) return;
+          form.hidden = true;
+          success.hidden = false;
+          success.focus();
+        });
+  
+        /* Очистка ошибки при вводе */
+        Array.prototype.forEach.call(form.querySelectorAll('input, select'), function (field) {
+          field.addEventListener('input', function () {
+            if (field.getAttribute('aria-invalid') === 'true') setError(field, '');
+          });
+          field.addEventListener('change', function () {
+            if (field.getAttribute('aria-invalid') === 'true') setError(field, '');
+          });
+        });
+  
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+          var items = root.querySelectorAll('[data-reveal]');
+          root.classList.add('vb-f3x-js-reveal');
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+              if (en.isIntersecting) {
+                en.target.classList.add('is-in');
+                io.unobserve(en.target);
+              }
+            });
+          }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+          Array.prototype.forEach.call(items, function (el) { io.observe(el); });
+        }
+      })();
+    </script>
+  </section>
+  
+  <!-- Контакты и карта -->
+  <section class="vb-g6y" id="contacts" data-section-name="Контакты и карта" aria-labelledby="vb-g6y-title" data-vibeblock-unique-section="yes">
+    <style>
+      .vb-g6y, .vb-g6y * { box-sizing: border-box; }
+      .vb-g6y input, .vb-g6y textarea, .vb-g6y select { font: inherit; }
+  
+      .vb-g6y {
+        --g6y-ink: #2B2724;
+        --g6y-muted: #6E6259;
+        --g6y-bg: #FAF4EC;
+        --g6y-accent: #B0563B;
+        --g6y-line: rgba(43, 39, 36, 0.16);
+        background: var(--g6y-bg);
+        color: var(--g6y-ink);
+        font-family: var(--t-text-font);
+        padding: clamp(72px, 11vw, 132px) 0 clamp(56px, 8vw, 96px);
+        scroll-margin-top: 70px;
+      }
+      .vb-g6y__inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 clamp(20px, 4vw, 40px);
+        display: grid;
+        gap: clamp(36px, 5vw, 64px);
+      }
+      .vb-g6y__title {
+        font-family: var(--t-headline-font);
+        font-weight: 400;
+        font-size: clamp(1.9rem, 3.6vw, 3rem);
+        line-height: 1.12;
+        letter-spacing: -0.015em;
+        margin: 0 0 26px;
+        text-wrap: balance;
+      }
+      .vb-g6y__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 20px;
+      }
+      .vb-g6y__item {
+        display: grid;
+        grid-template-columns: 40px 1fr;
+        gap: 16px;
+        align-items: start;
+      }
+      .vb-g6y__icon {
+        width: 40px; height: 40px;
+        border-radius: 50%;
+        background: rgba(176, 86, 59, 0.1);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .vb-g6y__icon img { width: 20px; height: 20px; display: block; }
+      .vb-g6y__label {
+        margin: 0 0 3px;
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--g6y-muted);
+      }
+      .vb-g6y__value {
+        margin: 0;
+        font-family: var(--t-headline-font);
+        font-size: 18.5px;
+        line-height: 1.4;
+      }
+      .vb-g6y__value a {
+        color: var(--g6y-ink);
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: color 0.25s ease, border-color 0.25s ease;
+      }
+      .vb-g6y__value a:hover { color: var(--g6y-accent); border-bottom-color: var(--g6y-accent); }
+      .vb-g6y__sub {
+        margin: 4px 0 0;
+        font-size: 13.5px;
+        line-height: 1.5;
+        color: var(--g6y-muted);
+      }
+  
+      .vb-g6y__socials {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 30px 0 0;
+        padding: 0;
+      }
+      .vb-g6y__social {
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 18px;
+        border: 1px solid var(--g6y-line);
+        border-radius: 999px;
+        font-size: 14px;
+        letter-spacing: 0.03em;
+        color: var(--g6y-ink);
+        text-decoration: none;
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+      }
+      .vb-g6y__social:hover {
+        background: var(--g6y-accent);
+        border-color: var(--g6y-accent);
+        color: #fff;
+      }
+      .vb-g6y :focus-visible {
+        outline: 2px solid var(--g6y-accent);
+        outline-offset: 3px;
+        border-radius: 2px;
+      }
+  
+      .vb-g6y__map {
+        border: 1px solid var(--g6y-line);
+        border-radius: 3px;
+        overflow: hidden;
+        background: #E9DECF;
+        min-height: 320px;
+        position: relative;
+      }
+      .vb-g6y__map iframe {
+        display: block;
+        width: 100%;
+        height: 100%;
+        min-height: 320px;
+        border: 0;
+      }
+      .vb-g6y__map-link {
+        display: inline-block;
+        margin-top: 14px;
+        font-size: 14px;
+        color: var(--g6y-accent);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(176, 86, 59, 0.4);
+      }
+      .vb-g6y__map-link:hover { border-bottom-color: var(--g6y-accent); }
+  
+      .vb-g6y-js-reveal [data-reveal] {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+      .vb-g6y-js-reveal [data-reveal].is-in { opacity: 1; transform: none; }
+  
+      .vb-g6y__footer {
+        max-width: 1280px;
+        margin: clamp(48px, 7vw, 80px) auto 0;
+        padding: 26px clamp(20px, 4vw, 40px) 0;
+        border-top: 1px solid var(--g6y-line);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 28px;
+        align-items: baseline;
+        justify-content: space-between;
+        font-size: 13px;
+        color: var(--g6y-muted);
+      }
+      .vb-g6y__footer p { margin: 0; }
+      .vb-g6y__footer a { color: var(--g6y-muted); text-decoration: none; border-bottom: 1px solid transparent; }
+      .vb-g6y__footer a:hover { color: var(--g6y-accent); }
+  
+      @media (min-width: 960px) {
+        .vb-g6y__inner { grid-template-columns: 0.9fr 1.1fr; align-items: start; }
+        .vb-g6y__map, .vb-g6y__map iframe { min-height: 460px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .vb-g6y-js-reveal [data-reveal] { opacity: 1; transform: none; transition: none; }
+        .vb-g6y__social, .vb-g6y__value a { transition: none; }
+      }
+    </style>
+  
+    <div class="vb-g6y__inner">
+      <div>
+        <h2 class="vb-g6y__title" id="vb-g6y-title" data-reveal="">Контакты</h2>
+        <ul class="vb-g6y__list" data-reveal="">
+          <li class="vb-g6y__item">
+            <span class="vb-g6y__icon"><img src="https://static.tildacdn.pub/lib/icons/tilda/map_way_mark_where_adress.svg" alt="" width="20" height="20" loading="lazy"></span>
+            <div>
+              <p class="vb-g6y__label">Адрес</p>
+              <p class="vb-g6y__value">Москва, ул. Большая Никитская, 24, стр</p>
+              <p class="vb-g6y__sub">2 этаж, вход со двора · м. Арбатская — 7 минут пешком</p>
+            </div>
+          </li>
+          <li class="vb-g6y__item">
+            <span class="vb-g6y__icon"><img src="https://static.tildacdn.pub/lib/icons/tilda/watch_clock_time.svg" alt="" width="20" height="20" loading="lazy"></span>
+            <div>
+              <p class="vb-g6y__label">Часы работы</p>
+              <p class="vb-g6y__value">Ежедневно, 10:00–21:00</p>
+              <p class="vb-g6y__sub">Последняя запись — в 19:30</p>
+            </div>
+          </li>
+          <li class="vb-g6y__item">
+            <span class="vb-g6y__icon"><img src="https://static.tildacdn.pub/lib/icons/tilda/phone_contact_call_ring.svg" alt="" width="20" height="20" loading="lazy"></span>
+            <div>
+              <p class="vb-g6y__label">Телефон</p>
+              <p class="vb-g6y__value"><a href="tel:+74951204567">+7 (495) 120-45-79</a></p>
+            </div>
+          </li>
+          <li class="vb-g6y__item">
+            <span class="vb-g6y__icon"><img src="https://static.tildacdn.pub/lib/icons/tilda/e-mail_email_contact.svg" alt="" width="20" height="20" loading="lazy"></span>
+            <div>
+              <p class="vb-g6y__label">Почта</p>
+              <p class="vb-g6y__value"><a href="mailto:hello@ladya-salon.ru">hello@ladya-salon.ru</a></p>
+            </div>
+          </li>
+        </ul>
+  
+        <ul class="vb-g6y__socials" data-reveal="" aria-label="Социальные сети">
+          <li><a class="vb-g6y__social" href="https://vk.com/" target="_blank" rel="noopener">ВКонтакте</a></li>
+          <li><a class="vb-g6y__social" href="https://t.me/" target="_blank" rel="noopener">Telegram</a></li>
+          <li><a class="vb-g6y__social" href="https://wa.me/74951204567" target="_blank" rel="noopener">WhatsApp</a></li>
+        </ul>
+      </div>
+  
+      <div data-reveal="">
+        <div class="vb-g6y__map">
+          <iframe src="https://yandex.ru/map-widget/v1/?ll=37.600900%2C55.752500&amp;z=16&amp;mode=search&amp;text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B0%D1%8F%20%D0%9D%D0%B8%D0%BA%D0%B8%D1%82%D1%81%D0%BA%D0%B0%D1%8F%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%2C%2024" title="Карта проезда к салону ЛАДЬЯ, Большая Никитская, 24" loading="lazy" allowfullscreen=""></iframe>
+        </div>
+        <a class="vb-g6y__map-link" href="https://yandex.ru/maps/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B0%D1%8F%20%D0%9D%D0%B8%D0%BA%D0%B8%D1%82%D1%81%D0%BA%D0%B0%D1%8F%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%2C%2024" target="_blank" rel="noopener">Открыть в Яндекс Картах</a>
+      </div>
+    </div>
+  
+    <div class="vb-g6y__footer">
+      <p>© 2016–2025 Салон красоты «Ладья». ИНН 7704123456</p>
+      <p><a href="#privacy" id="privacy">Политика конфиденциальности</a></p>
+    </div>
+  
+    <script>
+      (function () {
+        var root = document.getElementById('contacts');
+        if (!root) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (!('IntersectionObserver' in window)) return;
+        var items = root.querySelectorAll('[data-reveal]');
+        if (!items.length) return;
+        root.classList.add('vb-g6y-js-reveal');
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting) {
+              en.target.classList.add('is-in');
+              io.unobserve(en.target);
+            }
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+        Array.prototype.forEach.call(items, function (el) { io.observe(el); });
+      })();
+    </script>
+  </section>
